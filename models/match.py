@@ -24,5 +24,5 @@ class Match:
 
     def serialize(self):
         """Serialize the match into JSON format for storage."""
-        data = {attr: getattr(self, attr) for attr in ("player1", "player2", "completed", "winner")}
+        data = {attr: getattr(self, attr) for attr in ("players", "completed", "winner")}
         return data
