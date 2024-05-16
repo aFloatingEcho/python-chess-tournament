@@ -4,9 +4,8 @@ class Match:
     The match class contains information about a chess match.
     """
 
-    def __init__(self, player1, player2, completed, winner):
-        self.player1 = player1
-        self.player2 = player2
+    def __init__(self, players, completed, winner):
+        self.player1 = players
         self.completed = completed
         self.winner = winner
 
@@ -18,7 +17,10 @@ class Match:
         self.completed = status
 
     def setWinner(self, winner):
-        self.winner = winner
+        if(self.players.include(winner)):
+            self.winner = winner
+        else:
+            print("A winner has to be from the two players.")
 
     def serialize(self):
         """Serialize the match into JSON format for storage."""
