@@ -39,3 +39,11 @@ class Match:
         Sets the value of a match.
         """
         self.matchPoints = value
+
+    def serialize(self):
+        """Serialize the match into JSON format for storage."""
+        data = {attr: getattr(self, attr) for attr in ("player1", "player2", "matchPoints")}
+        # As mentioned in player.py, we want to make sure we use
+        # the str representation of datetime in JSON.
+        data["match_date"] = self.match_date
+        return data
