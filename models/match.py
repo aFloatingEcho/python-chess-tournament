@@ -5,12 +5,12 @@ class Match:
     """
 
     def __init__(self, players, completed, winner):
-        self.player1 = players
+        self.players = players
         self.completed = completed
         self.winner = winner
 
     def __str__(self):
-        match_info = str(self.player1) + " vs. " + str(self.player2)
+        match_info = str(self.players[0]) + " vs. " + str(self.players[1])
         return match_info
 
     def setCompleted(self, status):
