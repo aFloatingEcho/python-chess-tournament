@@ -17,7 +17,7 @@ class Match:
         self.completed = status
 
     def setWinner(self, winner):
-        if(self.players.include(winner)):
+        if (self.players.include(winner)):
             self.winner = winner
         else:
             print("A winner has to be from the two players.")
