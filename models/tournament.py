@@ -13,3 +13,10 @@ class Tournament:
         self.finished = finished
         self.rounds = rounds
 
+    def seralize(self):
+        """Serialize the tournament into JSON format for storage."""
+        data = {attr: getattr(self, attr) for attr in (
+            "name", "dates", "venue",
+            "number_of_rounds", "current_round", "completed",
+            "players", "finished", "rounds")}
+        return data
