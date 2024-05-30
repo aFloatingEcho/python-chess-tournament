@@ -3,7 +3,7 @@ from models import Match
 
 from .base import BaseCommand
 
-class MatchHandleCmd(BaseCommand):
+class MatchUpdateCmd(BaseCommand):
     """Command to handle matches"""
 
     def __init__(self, players, completed, winner, **data):
