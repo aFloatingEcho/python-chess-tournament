@@ -1,5 +1,5 @@
 from commands.context import Context
-from models import match
+from models import Match
 
 from .base import BaseCommand
 
