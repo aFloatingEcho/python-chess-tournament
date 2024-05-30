@@ -1,22 +1,44 @@
+import json
 
+from .match import Match
 
 class Tournament:
+    """
+    A local tournament.
 
-    def __init__(self, name, dates, venue, number_of_rounds, current_round, completed, players, finished, rounds):
+    Data is loaded from a JSON file (provided as arguement).
+    The class creates round information based off JSON info.
+    """
+
+    def __init__(self, filepath=None, name=None):
+        """
+        The constructor works in two ways:
+        - if filepath is provided, it loads data from JSON
+        - if it is not but a name is provided, it creates a new tournament
+        (and a new JSON file)
+        """
+
         self.name = name
-        self.dates = dates
-        self.venue = venue
-        self.number_of_rounds = number_of_rounds
-        self.current_round = current_round
-        self.completed = completed
-        self.players = players
-        self.finished = finished
-        self.rounds = rounds
+        self.filepath = filepath
+        self.matches = []
 
-    def serialize(self):
+        if filepath and not name:
+            # Load data from the JSON file
+            with open(filepath) as fp:
+                data = json.load(fp)
+        elif not filepath:
+            # We did not have a file, so we are going to create it by running the save method
+            self.save()
+
+    def save(self):
         """Serialize the tournament into JSON format for storage."""
-        data = {attr: getattr(self, attr) for attr in (
-            "name", "dates", "venue",
-            "number_of_rounds", "current_round", "completed",
-            "players", "finished", "rounds")}
-        return data
+
+        with open(self.filepath, "w") as fp:
+            json.dump(
+                {"name": self.name, "dates": self.dates, "venue": self.venue,
+                "number_of_rounds": self.number_of_rounds, "current_round": self.current_round, "completed": self.completed,
+                "players": self.players, "finished": self.finished, "rounds": self.rounds},
+            fp,
+            )
+
+            
