@@ -19,7 +19,11 @@ class Round:
 
     def getMatch(self, no):
         return self.matches[no]
-    
+
+    def updateMatch(self, no, completed, winner):
+        self.matches[no].setCompleted(completed)
+        self.matches[no].setWinner(winner)
+
     def checkIfRoundIsCompleted(self):
         for each in self.matches:
             if not (each.getMatchStatus()):
