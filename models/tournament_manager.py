@@ -8,7 +8,7 @@ class TournamentManager:
     def __init__(self, data_folder="data/tournaments"):
         datadir = Path(data_folder)
         self.data_folder = datadir
-        self.clubs = []
+        self.tours = []
         for filepath in datadir.iterdir():
             if filepath.is_file() and filepath.suffix == ".json":
                 try:
@@ -18,8 +18,8 @@ class TournamentManager:
 
     def create(self, name):
         filepath = self.data_folder / (name.replace(" ", "") + ".json")
-        club = Tournament(name=name, filepath=filepath)
-        club.save()
+        tours = Tournament(name=name, filepath=filepath)
+        tours.save()
 
-        self.clubs.append(club)
-        return club
+        self.clubs.append(tours)
+        return tours
