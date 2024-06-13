@@ -26,6 +26,15 @@ class Tournament:
             # Load data from the JSON file
             with open(filepath) as fp:
                 data = json.load(fp)
+                self.name = data["name"]
+                # self.dates
+                self.venue = data["venue"]
+                self.number_of_rounds = data["number_of_rounds"]
+                self.current_round = data["current_round"]
+                self.completed = data["completed"]
+                self.players = data["players"]
+                self.finished = data.get("finished")
+                # self.rounds
         elif not filepath:
             # We did not have a file, so we are going to create it by running the save method
             self.save()
