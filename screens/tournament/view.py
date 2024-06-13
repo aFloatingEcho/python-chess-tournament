@@ -21,7 +21,8 @@ class TournamentView(BaseScreen):
 
         else:
             print("Current Round Information:")
-            for each in self.tournament.rounds[self.tournament.current_round - 1]:
+            for idx, each in enumerate(self.tournament.rounds[self.tournament.current_round - 1], 1):
+                print("Match " + str(idx))
                 print(each["players"][0] + " vs " + each["players"][1])
                 if(each["completed"]):
                     if(each["winner"] == None):
