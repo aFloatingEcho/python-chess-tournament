@@ -36,7 +36,7 @@ class Tournament:
                 self.completed = data["completed"]
                 self.players = data["players"]
                 self.finished = data.get("finished")
-                # self.rounds
+                self.rounds = data.get("rounds")
         elif not filepath:
             # We did not have a file, so we are going to create it by running the save method
             self.save()
