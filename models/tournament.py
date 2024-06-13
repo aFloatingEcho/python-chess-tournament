@@ -1,3 +1,4 @@
+from datetime import datetime
 import json
 
 from .match import Match
@@ -9,6 +10,7 @@ class Tournament:
     Data is loaded from a JSON file (provided as arguement).
     The class creates round information based off JSON info.
     """
+    DATE_FORMAT = "%d-%m-%Y"
 
     def __init__(self, filepath=None, name=None):
         """
@@ -27,7 +29,7 @@ class Tournament:
             with open(filepath) as fp:
                 data = json.load(fp)
                 self.name = data["name"]
-                # self.dates
+                self.dates = data["dates"]
                 self.venue = data["venue"]
                 self.number_of_rounds = data["number_of_rounds"]
                 self.current_round = data["current_round"]
