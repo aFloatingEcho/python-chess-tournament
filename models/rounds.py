@@ -17,12 +17,21 @@ class Round:
         data = {attr: getattr(self, attr) for attr in ("matches")}
         return data
 
-    def getMatch(self, no):
-        return self.matches[no]
+    def create_match(self, **kwargs):
+        match = Match(**kwargs)
+        self.matches.append(match)
+        self.serialize()
+        return match
 
-    def updateMatch(self, no, completed, winner):
-        self.matches[no].setCompleted(completed)
-        self.matches[no].setWinner(winner)
+    def update_match(self, match, **kwargs):
+        if match not in self.matches:
+            raise RuntimeError("Match not in database")
+
+        for key, value in kwargs.items():
+            setattr(match, key, value)
+
+        self.serialize()
+        return match
 
     def checkIfRoundIsCompleted(self):
         for each in self.matches:
