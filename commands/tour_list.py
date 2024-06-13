@@ -9,4 +9,4 @@ class TourListCmd(BaseCommand):
 
     def execute(self):
         tm = TournamentManager()
-        return Context("main-menu-tour", tour=tm.tours)
+        return Context("main-menu-tour", tournaments=tm.tournaments)

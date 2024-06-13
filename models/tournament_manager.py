@@ -8,11 +8,11 @@ class TournamentManager:
     def __init__(self, data_folder="data/tournaments"):
         datadir = Path(data_folder)
         self.data_folder = datadir
-        self.tours = []
+        self.tournaments = []
         for filepath in datadir.iterdir():
             if filepath.is_file() and filepath.suffix == ".json":
                 try:
-                    self.tours.append(Tournament(filepath))
+                    self.tournaments.append(Tournament(filepath))
                 except json.JSONDecodeError:
                     print(filepath, "is invalid JSON file.")
 
@@ -21,5 +21,5 @@ class TournamentManager:
         tours = Tournament(name=name, filepath=filepath)
         tours.save()
 
-        self.tours.append(tours)
+        self.tournaments.append(tours)
         return tours
