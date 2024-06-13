@@ -12,7 +12,7 @@ class TournamentManager:
         for filepath in datadir.iterdir():
             if filepath.is_file() and filepath.suffix == ".json":
                 try:
-                    self.clubs.append(Tournament(filepath))
+                    self.tours.append(Tournament(filepath))
                 except json.JSONDecodeError:
                     print(filepath, "is invalid JSON file.")
 
@@ -21,5 +21,5 @@ class TournamentManager:
         tours = Tournament(name=name, filepath=filepath)
         tours.save()
 
-        self.clubs.append(tours)
+        self.tours.append(tours)
         return tours
