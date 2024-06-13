@@ -39,5 +39,9 @@ class TournamentView(BaseScreen):
             value = self.input_string()
             if value.upper() == "B":
                 return TourListCmd()
-            elif value.upper() == "C":
-                return NoopCmd("tournament-create", tournament=self.tournament)
+            elif value.isdigit() and (self.tournament.current_round != None):
+                value = int(value)
+                return NoopCmd(
+                    "match-edit", tournament=self.tournament, 
+                    match=self.tournament.rounds[self.tournament.current_round - 1][value - 1]
+                )
