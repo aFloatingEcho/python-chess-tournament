@@ -22,6 +22,9 @@ class Match:
         else:
             print("A winner has to be from the two players.")
 
+    def getMatchStatus(self):
+        return self.completed
+
     def serialize(self):
         """Serialize the match into JSON format for storage."""
         data = {attr: getattr(self, attr) for attr in ("players", "completed", "winner")}
