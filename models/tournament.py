@@ -12,7 +12,8 @@ class Tournament:
     """
     DATE_FORMAT = "%d-%m-%Y"
 
-    def __init__(self, filepath=None, name=None):
+    def __init__(self, filepath=None, 
+                 name=None, dates=None, venue=None, number_of_rounds=None):
         """
         The constructor works in two ways:
         - if filepath is provided, it loads data from JSON
@@ -20,9 +21,15 @@ class Tournament:
         (and a new JSON file)
         """
 
-        self.name = name
         self.filepath = filepath
-        self.matches = []
+        self.name = name
+        self.dates = dates
+        self.venue = venue
+        self.number_of_rounds = number_of_rounds
+        self.current_round = 0
+        self.completed = False
+        self.players = []
+        self.rounds = []
 
         if filepath and not name:
             # Load data from the JSON file

@@ -1,12 +1,13 @@
 from commands import TourListCmd
-from screens import ViewRound, TournamentView, MainMenuTour, MatchEdit, MatchView
-
+from screens import TournamentCreate, TournamentView, MainMenuTour, MatchEdit
+from screens import MatchView, ViewRound
 
 class App:
     """The main controller for the tournament management program"""
 
     SCREENS = {
         "main-menu-tour": MainMenuTour,
+        "tournament-create" : TournamentCreate,
         "tournament-view": TournamentView,
         "match-edit": MatchEdit,
         "match-view": MatchView,

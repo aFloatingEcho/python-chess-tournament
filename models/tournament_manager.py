@@ -16,9 +16,10 @@ class TournamentManager:
                 except json.JSONDecodeError:
                     print(filepath, "is invalid JSON file.")
 
-    def create(self, name):
+    def create(self, name, dates, venue, number_of_rounds):
         filepath = self.data_folder / (name.replace(" ", "") + ".json")
-        tours = Tournament(name=name, filepath=filepath)
+        tours = Tournament(name=name, filepath=filepath, dates=dates, 
+                           venue=venue, number_of_rounds=number_of_rounds)
         tours.save()
 
         self.tournaments.append(tours)
