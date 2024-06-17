@@ -95,7 +95,6 @@ class Tournament:
         total_pairings = len(standings) // 2
         pairings = []
         for x in range(total_pairings):
-            print(x)
             # if there's more possible combinations, go check if this standing already exists.
             if (len(standings) > 2):
                 for each_round in self.rounds:
@@ -113,3 +112,17 @@ class Tournament:
                 standings.pop(1)
                 standings.pop(0)
         return pairings
+
+    def next_round(self):
+        pairings = self.get_pairings()
+        if (self.current_round < self.number_of_rounds):
+            round = []
+            for each in pairings:
+                round.append({'players':each, 'completed': False, 'winner': None})
+            self.current_round += 1
+            self.rounds.append(round)
+        if(self.current_round == self.number_of_rounds):
+            self.completed = True
+            self.finished = True
+        self.save()
+        return(round)
