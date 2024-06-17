@@ -1,4 +1,4 @@
-from commands import TourListCmd, NoopCmd
+from commands import TourListCmd, NoopCmd, GenerateReport
 
 from ..base_screen import BaseScreen
 
@@ -28,6 +28,7 @@ class TournamentView(BaseScreen):
             for key, value in current_standings.items():
                 print(f"{key}: {value}")
             print("Viewing tournament. Type 'B' to go back.")
+            print("Press 'G' to generate a report of the tournament.")
             if(self.tournament.current_round is not None):
                 print("Press 'E' to edit the current round.")
                 print("Press 'A' to advance the tournament.")
@@ -35,6 +36,8 @@ class TournamentView(BaseScreen):
             value = self.input_string()
             if value.upper() == "B":
                 return TourListCmd()
+            elif value.upper() == "G":
+                return GenerateReport(tournament=self.tournament)
             elif value.upper() == "E" and (self.tournament.current_round != None):
                 return NoopCmd(
                     "round-view", tournament=self.tournament,

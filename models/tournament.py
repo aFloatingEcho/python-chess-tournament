@@ -1,5 +1,5 @@
 from datetime import datetime
-import json
+import json, os
 
 from .match import Match
 
@@ -133,3 +133,33 @@ class Tournament:
             self.players.append(player)
             self.save()
         return player
+
+    def generate_report(self):
+        save_location = self.name + ".txt"
+        with open(save_location, 'w') as file:
+            file.write("Tournament Name: " + self.name + "\n")
+            file.write("Tournament Dates:" + self.dates['from'] + " to " + self.dates['to'] + "\n")
+            file.write("Tournament Venue:" + self.venue + "\n")
+            file.write("Number of Rounds:" + str(self.number_of_rounds) + "\n")
+            if(self.current_round is not None):
+                file.write("Current Round: " + str(self.current_round) + "\n")
+            if(self.completed):
+                file.write("The tournament has completed." + "\n")
+            players = "Players in tournament: "
+            for each in self.players:
+                players = each + " "
+            file.write(players + "\n")
+            for idx, each_round in (enumerate(self.rounds, 1)):
+                file.write("## Round " + str(idx) + " -----\n")
+                for idy, each_match in (enumerate(each_round, 1)):
+                    file.write(">>> Match " + str(idy) + "\n")
+                    file.write(each_match["players"][0] + " vs " + each_match["players"][1] + "\n")
+                    if(each_match["completed"]):
+                        if(each_match["winner"] == None):
+                            file.write("The match concluded with no winner." + "\n")
+                        else:
+                            file.write("The match concluded with " + each_match["winner"] + " as the winner." + "\n")
+                    else:
+                        file.write("The match is ongoing." + "\n")
+        print("Report generated at: \" " + save_location + "\"")
+        return self

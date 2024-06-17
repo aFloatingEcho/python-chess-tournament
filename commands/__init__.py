@@ -8,6 +8,7 @@ from .create_tour import TournamentCreateCmd
 from .update_match import MatchUpdateCmd
 from .update_round import RoundUpdateCmd
 from .update_tour import EditTourCmd
+from .generate_report import GenerateReport
 
 __all__ = [
     "ClubCreateCmd",
@@ -20,4 +21,5 @@ __all__ = [
     "MatchUpdateCmd",
     "RoundUpdateCmd",
     "EditTourCmd",
+    "GenerateReport",
 ]
