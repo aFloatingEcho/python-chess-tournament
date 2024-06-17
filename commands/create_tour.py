@@ -17,4 +17,4 @@ class TournamentCreateCmd(BaseCommand):
         tm = TournamentManager()
         tour = tm.create(name=self.name, dates=self.dates, 
                          venue=self.venue, number_of_rounds=self.number_of_rounds)
-        return Context("tournament-view", tour=tour)
+        return Context("tournament-view", tournament=tour)

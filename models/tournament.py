@@ -30,6 +30,7 @@ class Tournament:
         self.completed = False
         self.players = []
         self.rounds = []
+        self.finished = False
 
         if filepath and not name:
             # Load data from the JSON file
