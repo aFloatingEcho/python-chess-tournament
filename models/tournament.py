@@ -54,12 +54,11 @@ class Tournament:
 
     def update_match(self, match, **kawrgs):
         """Method for updating a particular match in the current match."""
-
-        if match not in self.matches:
-            raise RuntimeError(f"Match does not exist.")
         
-        for key, value in kawrgs.items():
-            setattr(match, key, value)
+        for each in self.rounds[self.current_round - 1]:
+            if match['players'] == each:
+                for key, value in match:
+                    setattr(each, key, value)
 
         self.save()
         return match

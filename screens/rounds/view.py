@@ -25,8 +25,12 @@ class ViewRound(BaseScreen):
 
     def get_command(self):
         """Gets the command for this screen."""
+        print("Input the Match you want to update.")
         while True:
             value = self.input_string()
             if value.upper() == "B":
                 return NoopCmd("tournament-view", tournament=self.tournament)
-            # elif value.isdigit() and (self.view_round_no == (self.tournament.current_round - 0)):
+            elif value.isdigit() and ((int(value) - 1) <= len(self.matches)):
+                print(self.matches[int(value)-1])
+                return NoopCmd("match-edit", tournament=self.tournament, 
+                               round=self.matches, matches=self.matches[int(value) - 1])

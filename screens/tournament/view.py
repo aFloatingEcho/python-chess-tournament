@@ -53,6 +53,6 @@ class TournamentView(BaseScreen):
                 return TourListCmd()
             elif value.upper() == "E" and (self.tournament.current_round != None):
                 return NoopCmd(
-                    "round-view", tournament=self.tournament, 
+                    "round-view", tournament=self.tournament,
                     matches=self.tournament.rounds[int(self.tournament.current_round) - 1]
                 )
