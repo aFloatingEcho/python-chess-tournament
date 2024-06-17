@@ -62,3 +62,21 @@ class Tournament:
 
         self.save()
         return match
+
+    def get_standings(self):
+        # Function to obtain the current standings. Note that this is like extremely inefficient.
+        standings = {}
+        for each in self.players:
+            standings[each] = 0.0
+        for each_round in self.rounds:
+            for each_match in each_round:
+                if(each_match['completed']):
+                    if(each_match['winner'] is not None):
+                        standings.update({each_match['winner']: standings.get(each_match['winner']) + 1.0}) 
+                    else:
+                        standings.update({each_match['players'][0] : standings.get(each_match['players'][0]) + .5})
+                        standings.update({each_match['players'][1] : standings.get(each_match['players'][1]) + .5})
+        # This particular line is due to this: https://www.freecodecamp.org/news/sort-dictionary-by-value-in-python/
+        sorted_standings = sorted(standings.items(), key=lambda x:x[1], reverse=True)
+        standings = dict(sorted_standings)
+        return standings
