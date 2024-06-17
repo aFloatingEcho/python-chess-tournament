@@ -15,6 +15,10 @@ class TournamentView(BaseScreen):
         print("Venue:", self.tournament.venue)
         print("Number of Rounds:", self.tournament.number_of_rounds)
         print("Current Round:", self.tournament.current_round)
+        player_list = ""
+        for each in self.tournament.players:
+            player_list += each + "|"
+        print("Players: ", player_list)
         if (self.tournament.current_round is None):
             print("Tournament has finished.")
         else:
