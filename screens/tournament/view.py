@@ -35,13 +35,14 @@ class TournamentView(BaseScreen):
     def get_command(self):
         """Gets the command for this screen"""
         while True:
-            print("Viewing tournament.")
+            print("Viewing tournament. Type 'B' to go back.")
+            if(self.tournament.current_round != None):
+                print("Press 'E' to edit the current round.")
             value = self.input_string()
             if value.upper() == "B":
                 return TourListCmd()
-            elif value.isdigit() and (self.tournament.current_round != None):
-                value = int(value)
+            elif value.upper() == "E" and (self.tournament.current_round != None):
                 return NoopCmd(
-                    "match-edit", tournament=self.tournament, 
-                    match=self.tournament.rounds[self.tournament.current_round - 1][value - 1]
+                    "round-view", tournament=self.tournament, 
+                    match=self.tournament.rounds[int(self.tournament.current_round) - 1]
                 )
