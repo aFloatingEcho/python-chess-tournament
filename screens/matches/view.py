@@ -12,6 +12,7 @@ class MatchView(BaseScreen):
 
     def display(self):
         print(str(self.match))
+        print(str(self.match['players'][0]) + " vs. " + str(self.match['players'][1]))
         if (self.match['completed']):
             print("The match is concluded.")
             if (self.match.get('winner') is None):
@@ -25,5 +26,9 @@ class MatchView(BaseScreen):
     def get_command(self):
         while True:
             print("Current match in progress:")
-            self.display()
-            return NoopCmd("tournament-view", tournament=self.tournament)
+            print("Type 'E' to edit the match, or 'B' to return to tournament view.")
+            action = self.input_string()
+            if action.upper() == "B":
+                return NoopCmd("tournament-view", tournament=self.tournament)
+            elif action.upper() == "E":
+                return NoopCmd("match-edit", tournament=self.tournament, match=self.match)
