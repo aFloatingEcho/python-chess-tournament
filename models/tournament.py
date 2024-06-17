@@ -145,7 +145,7 @@ class Tournament:
                 file.write("The tournament has completed." + "\n")
             players = "Players in tournament: "
             for each in self.players:
-                players = each + " "
+                players += each + " "
             file.write(players + "\n")
             for idx, each_round in (enumerate(self.rounds, 1)):
                 file.write("## Round " + str(idx) + " -----\n")
