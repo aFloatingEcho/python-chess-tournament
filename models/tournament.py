@@ -126,7 +126,7 @@ class Tournament:
             self.finished = True
             self.current_round = None
         self.save()
-        return(round)
+        return self
 
     def add_player(self, player):
         if player not in self.players:

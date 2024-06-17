@@ -1,6 +1,6 @@
 from commands import TourListCmd
 from screens import TournamentCreate, TournamentView, MainMenuTour, MatchEdit
-from screens import MatchView, ViewRound
+from screens import MatchView, ViewRound, CreateRound
 
 class App:
     """The main controller for the tournament management program"""
@@ -11,7 +11,8 @@ class App:
         "tournament-view": TournamentView,
         "match-edit": MatchEdit,
         "match-view": MatchView,
-        "round-view":ViewRound,
+        "round-view": ViewRound,
+        "round-create": CreateRound,
         "exit": False,
     }
 

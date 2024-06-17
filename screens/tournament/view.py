@@ -30,6 +30,7 @@ class TournamentView(BaseScreen):
             print("Viewing tournament. Type 'B' to go back.")
             if(self.tournament.current_round is not None):
                 print("Press 'E' to edit the current round.")
+                print("Press 'A' to continue the tournament.")
             value = self.input_string()
             if value.upper() == "B":
                 return TourListCmd()
@@ -37,4 +38,8 @@ class TournamentView(BaseScreen):
                 return NoopCmd(
                     "round-view", tournament=self.tournament,
                     matches=self.tournament.rounds[int(self.tournament.current_round) - 1]
+                )
+            elif value.upper() == "A" and (self.tournament.current_round is not None):
+                return NoopCmd(
+                    "round-create", tournament=self.tournament
                 )
