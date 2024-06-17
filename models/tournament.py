@@ -124,6 +124,7 @@ class Tournament:
         if(self.current_round == self.number_of_rounds):
             self.completed = True
             self.finished = True
+            self.current_round = None
         self.save()
         return(round)
 
