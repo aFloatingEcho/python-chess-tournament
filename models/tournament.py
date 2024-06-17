@@ -55,8 +55,9 @@ class Tournament:
         with open(self.filepath, "w") as fp:
             json.dump(
                 {"name": self.name, "dates": self.dates, "venue": self.venue,
-                "number_of_rounds": self.number_of_rounds, "current_round": self.current_round, "completed": self.completed,
-                "players": self.players, "finished": self.finished, "rounds": self.rounds},
+                "number_of_rounds": self.number_of_rounds, "current_round": self.current_round, 
+                "completed": self.completed, "players": self.players, 
+                "finished": self.finished, "rounds": self.rounds},
             fp,
             )
 
@@ -88,3 +89,13 @@ class Tournament:
         sorted_standings = sorted(standings.items(), key=lambda x:x[1], reverse=True)
         standings = dict(sorted_standings)
         return standings
+
+    def get_pairings(self):
+        standings = list(self.get_standings())
+        total_pairings = len(standings) // 2
+        pairings = []
+        for x in range(total_pairings):
+            first = standings[0]
+            second = standings[-1]
+            pairings.append([first, second])
+        return pairings
