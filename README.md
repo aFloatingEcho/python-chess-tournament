@@ -1,4 +1,4 @@
-# Starter code - OpenClassrooms WPS | P3
+# Python Chess Tournament Program
 
 This repository contains the work that has been done so far on the chess tournament program.
 In addition, it has the completed Chess Tournament program.
