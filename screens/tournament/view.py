@@ -39,6 +39,14 @@ class TournamentView(BaseScreen):
             elif value.upper() == "G":
                 return GenerateReport(tournament=self.tournament)
             elif value.upper() == "E" and (self.tournament.current_round is not None):
+                # Safety checks are here. Note that the logic probably can be fixed, but it works for now.
+                if (self.tournament.current_round == 0 and len(self.tournament.players) >= 2):
+                    print("Need to generate the first round.")
+                    return NoopCmd(
+                        "round-create", tournament=self.tournament
+                    )
+                elif (self.tournament.current_round == 0):
+                    return NoopCmd("tournament-view", tournament=self.tournament)
                 return NoopCmd(
                     "round-view", tournament=self.tournament,
                     matches=self.tournament.rounds[int(self.tournament.current_round) - 1]

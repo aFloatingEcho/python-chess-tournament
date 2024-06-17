@@ -13,7 +13,8 @@ class CreateRound(BaseScreen):
         print("Are you sure you want move on with the tournament?")
         print("Type in 'Y' (without quotes) to confirm.")
         value = self.input_string()
-        if (value.upper() == "Y"):
+        if (value.upper() == "Y" and len(self.tournament.players) >= 2):
             return RoundUpdateCmd(tournament=self.tournament)
-        else:
-            return NoopCmd("tournament-view", tournament=self.tournament)
+        if (len(self.tournament.players) < 2):
+            print("You need more players before starting the tournament.")
+        return NoopCmd("tournament-view", tournament=self.tournament)
