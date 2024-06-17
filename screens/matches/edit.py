@@ -20,11 +20,11 @@ class MatchEdit(BaseScreen):
             self.matches.update({"completed": True})
             print("Pick a winner based off number, if an invalid value is picked, no winner will be picked.")
             for idx, each in enumerate(self.matches['players']):
-                print(idx + 1," ",each)
+                print(idx + 1, " ", each)
             action = self.input_string()
             if (action.isdigit()):
                 action = int(action) - 1
-                if(action == 0 or action == 1):
+                if (action == 0 or action == 1):
                     self.matches.update({"winner": self.matches['players'][action]})
             else:
                 self.matches.update({"winner": None})

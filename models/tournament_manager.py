@@ -18,7 +18,7 @@ class TournamentManager:
 
     def create(self, name, dates, venue, number_of_rounds):
         filepath = self.data_folder / (name.replace(" ", "") + ".json")
-        tours = Tournament(name=name, filepath=filepath, dates=dates, 
+        tours = Tournament(name=name, filepath=filepath, dates=dates,
                            venue=venue, number_of_rounds=number_of_rounds)
         tours.save()
 

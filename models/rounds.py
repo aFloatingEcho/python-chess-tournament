@@ -2,7 +2,7 @@ from .match import Match
 
 
 class Round:
-    
+
     def __init__(self, matches):
         self.matches = matches
 
@@ -36,5 +36,5 @@ class Round:
     def checkIfRoundIsCompleted(self):
         for each in self.matches:
             if not (each.getMatchStatus()):
-               return False
+                return False
         return True

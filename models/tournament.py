@@ -1,7 +1,5 @@
-from datetime import datetime
-import json, os
+import json
 
-from .match import Match
 
 class Tournament:
     """
@@ -12,7 +10,7 @@ class Tournament:
     """
     DATE_FORMAT = "%d-%m-%Y"
 
-    def __init__(self, filepath=None, 
+    def __init__(self, filepath=None,
                  name=None, dates=None, venue=None, number_of_rounds=None):
         """
         The constructor works in two ways:
@@ -53,17 +51,17 @@ class Tournament:
         """Serialize the tournament into JSON format for storage."""
 
         with open(self.filepath, "w") as fp:
-            json.dump(
-                {"name": self.name, "dates": self.dates, "venue": self.venue,
-                "number_of_rounds": self.number_of_rounds, "current_round": self.current_round, 
-                "completed": self.completed, "players": self.players, 
+            json.dump({
+                "name": self.name, "dates": self.dates, "venue": self.venue,
+                "number_of_rounds": self.number_of_rounds, "current_round": self.current_round,
+                "completed": self.completed, "players": self.players,
                 "finished": self.finished, "rounds": self.rounds},
-            fp,
+                fp,
             )
 
     def update_match(self, match, **kawrgs):
         """Method for updating a particular match in the current match."""
-        
+
         for each in self.rounds[self.current_round - 1]:
             if match['players'] == each:
                 for key, value in match:
@@ -79,14 +77,14 @@ class Tournament:
             standings[each] = 0.0
         for each_round in self.rounds:
             for each_match in each_round:
-                if(each_match['completed']):
-                    if(each_match['winner'] is not None):
-                        standings.update({each_match['winner']: standings.get(each_match['winner']) + 1.0}) 
+                if (each_match['completed']):
+                    if (each_match['winner'] is not None):
+                        standings.update({each_match['winner']: standings.get(each_match['winner']) + 1.0})
                     else:
-                        standings.update({each_match['players'][0] : standings.get(each_match['players'][0]) + .5})
-                        standings.update({each_match['players'][1] : standings.get(each_match['players'][1]) + .5})
+                        standings.update({each_match['players'][0]: standings.get(each_match['players'][0]) + .5})
+                        standings.update({each_match['players'][1]: standings.get(each_match['players'][1]) + .5})
         # This particular line is due to this: https://www.freecodecamp.org/news/sort-dictionary-by-value-in-python/
-        sorted_standings = sorted(standings.items(), key=lambda x:x[1], reverse=True)
+        sorted_standings = sorted(standings.items(), key=lambda x: x[1], reverse=True)
         standings = dict(sorted_standings)
         return standings
 
@@ -99,7 +97,7 @@ class Tournament:
             if (len(standings) > 2):
                 for each_round in self.rounds:
                     for each_match in each_round:
-                        if(each_match['players'] is [standings[0], standings[1]]):
+                        if (each_match['players'] is [standings[0], standings[1]]):
                             pairings.append([standings[0], standings[2]])
                             standings.pop(2)
                             standings.pop(0)
@@ -118,10 +116,10 @@ class Tournament:
         if (self.current_round < self.number_of_rounds):
             round = []
             for each in pairings:
-                round.append({'players':each, 'completed': False, 'winner': None})
+                round.append({'players': each, 'completed': False, 'winner': None})
             self.current_round += 1
             self.rounds.append(round)
-        if(self.current_round == self.number_of_rounds):
+        if (self.current_round == self.number_of_rounds):
             self.completed = True
             self.finished = True
             self.current_round = None
@@ -141,9 +139,9 @@ class Tournament:
             file.write("Tournament Dates:" + self.dates['from'] + " to " + self.dates['to'] + "\n")
             file.write("Tournament Venue:" + self.venue + "\n")
             file.write("Number of Rounds:" + str(self.number_of_rounds) + "\n")
-            if(self.current_round is not None):
+            if (self.current_round is not None):
                 file.write("Current Round: " + str(self.current_round) + "\n")
-            if(self.completed):
+            if (self.completed):
                 file.write("The tournament has completed." + "\n")
             players = "Players in tournament: "
             for each in self.players:
@@ -154,8 +152,8 @@ class Tournament:
                 for idy, each_match in (enumerate(each_round, 1)):
                     file.write(">>> Match " + str(idy) + "\n")
                     file.write(each_match["players"][0] + " vs " + each_match["players"][1] + "\n")
-                    if(each_match["completed"]):
-                        if(each_match["winner"] == None):
+                    if (each_match["completed"]):
+                        if (each_match["winner"] is None):
                             file.write("The match concluded with no winner." + "\n")
                         else:
                             file.write("The match concluded with " + each_match["winner"] + " as the winner." + "\n")

@@ -32,13 +32,13 @@ class TournamentEdit(BaseScreen):
                     print("Warning: Function will pick first name on the list.")
                     action = self.input_string()
                     for each in self.players:
-                        if(action in each.name):
+                        if (action in each.name):
                             print("Adding: ", each.name, " ", each.chess_id)
                             return EditTourCmd(tournament=self.tournament, player=each.chess_id)
                 elif (action.upper() == "I"):
                     action = self.input_chess_id()
                     for each in self.players:
-                        if(action == (each.chess_id)):
+                        if (action == (each.chess_id)):
                             print("Adding: ", each.name, " ", each.chess_id)
                             return EditTourCmd(tournament=self.tournament, player=each.chess_id)
             return NoopCmd(

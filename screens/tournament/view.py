@@ -15,7 +15,7 @@ class TournamentView(BaseScreen):
         print("Venue:", self.tournament.venue)
         print("Number of Rounds:", self.tournament.number_of_rounds)
         print("Current Round:", self.tournament.current_round)
-        if (self.tournament.current_round == None):
+        if (self.tournament.current_round is None):
             print("Tournament has finished.")
         else:
             print("Tournament is ongoing.")
@@ -29,7 +29,7 @@ class TournamentView(BaseScreen):
                 print(f"{key}: {value}")
             print("Viewing tournament. Type 'B' to go back.")
             print("Press 'G' to generate a report of the tournament.")
-            if(self.tournament.current_round is not None):
+            if (self.tournament.current_round is not None):
                 print("Press 'E' to edit the current round.")
                 print("Press 'A' to advance the tournament.")
                 print("Press 'R' to register a new player.")
@@ -38,7 +38,7 @@ class TournamentView(BaseScreen):
                 return TourListCmd()
             elif value.upper() == "G":
                 return GenerateReport(tournament=self.tournament)
-            elif value.upper() == "E" and (self.tournament.current_round != None):
+            elif value.upper() == "E" and (self.tournament.current_round is not None):
                 return NoopCmd(
                     "round-view", tournament=self.tournament,
                     matches=self.tournament.rounds[int(self.tournament.current_round) - 1]

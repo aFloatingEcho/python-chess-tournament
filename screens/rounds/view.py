@@ -15,8 +15,8 @@ class ViewRound(BaseScreen):
         for idx, each in (enumerate(self.matches, 1)):
             print("Match " + str(idx))
             print(each["players"][0] + " vs " + each["players"][1])
-            if(each["completed"]):
-                if(each["winner"] == None):
+            if (each["completed"]):
+                if (each["winner"] is None):
                     print("The match concluded with no winner.")
                 else:
                     print("The match concluded with " + each["winner"] + " as the winner.")
@@ -31,5 +31,5 @@ class ViewRound(BaseScreen):
             if value.upper() == "B":
                 return NoopCmd("tournament-view", tournament=self.tournament)
             elif value.isdigit() and ((int(value) - 1) <= len(self.matches)):
-                return NoopCmd("match-edit", tournament=self.tournament, 
+                return NoopCmd("match-edit", tournament=self.tournament,
                                round=self.matches, matches=self.matches[int(value) - 1])
