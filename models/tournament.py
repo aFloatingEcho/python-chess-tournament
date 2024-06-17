@@ -95,7 +95,21 @@ class Tournament:
         total_pairings = len(standings) // 2
         pairings = []
         for x in range(total_pairings):
-            first = standings[0]
-            second = standings[-1]
-            pairings.append([first, second])
+            print(x)
+            # if there's more possible combinations, go check if this standing already exists.
+            if (len(standings) > 2):
+                for each_round in self.rounds:
+                    for each_match in each_round:
+                        if(each_match['players'] is [standings[0], standings[1]]):
+                            pairings.append([standings[0], standings[2]])
+                            standings.pop(2)
+                            standings.pop(0)
+                            continue
+                pairings.append([standings[0], standings[1]])
+                standings.pop(1)
+                standings.pop(0)
+            else:
+                pairings.append([standings[0], standings[1]])
+                standings.pop(1)
+                standings.pop(0)
         return pairings
