@@ -6,12 +6,12 @@ from ..base_screen import BaseScreen
 class ViewRound(BaseScreen):
     """Screen displayed when viewing a round."""
 
-    def __init__(self, tournament, view_round_no, round=None):
+    def __init__(self, tournament, matches):
         self.tournament = tournament
-        self.round = round
-        self.view_round_no = view_round_no
+        self.matches = matches
 
     def display(self):
+        print("Currently Viewing Round " + str(self.tournament.current_round))
         for idx, each in (enumerate(self.matches, 1)):
             print("Match " + str(idx))
             print(each["players"][0] + " vs " + each["players"][1])
@@ -26,7 +26,6 @@ class ViewRound(BaseScreen):
     def get_command(self):
         """Gets the command for this screen."""
         while True:
-            print("Currently Viewing Round " + self.view_round_no)
             value = self.input_string()
             if value.upper() == "B":
                 return NoopCmd("tournament-view", tournament=self.tournament)
