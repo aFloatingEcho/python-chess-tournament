@@ -1,5 +1,5 @@
 from commands import TourListCmd
-from screens import ClubCreate, TournamentView, MainMenuTour, MatchEdit, MatchView
+from screens import ViewRound, TournamentView, MainMenuTour, MatchEdit, MatchView
 
 
 class App:
@@ -10,6 +10,7 @@ class App:
         "tournament-view": TournamentView,
         "match-edit": MatchEdit,
         "match-view": MatchView,
+        "round-view":ViewRound,
         "exit": False,
     }
 
