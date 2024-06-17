@@ -11,7 +11,7 @@ class TournamentView(BaseScreen):
 
     def display(self):
         print("##", self.tournament.name)
-        print("###", self.tournament.dates)
+        print("###", "From ", self.tournament.dates['from'], " to ", self.tournament.dates['to'])
         print("Venue:", self.tournament.venue)
         print("Number of Rounds:", self.tournament.number_of_rounds)
         print("Current Round:", self.tournament.current_round)
