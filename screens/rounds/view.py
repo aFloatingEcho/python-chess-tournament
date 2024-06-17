@@ -31,6 +31,5 @@ class ViewRound(BaseScreen):
             if value.upper() == "B":
                 return NoopCmd("tournament-view", tournament=self.tournament)
             elif value.isdigit() and ((int(value) - 1) <= len(self.matches)):
-                print(self.matches[int(value)-1])
                 return NoopCmd("match-edit", tournament=self.tournament, 
                                round=self.matches, matches=self.matches[int(value) - 1])
