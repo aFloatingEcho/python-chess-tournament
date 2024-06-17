@@ -19,7 +19,7 @@ class ViewRound(BaseScreen):
                 if(each["winner"] == None):
                     print("The match concluded with no winner.")
                 else:
-                    print("The match concluded with " + each["winner"] + "as the winner.")
+                    print("The match concluded with " + each["winner"] + " as the winner.")
             else:
                 print("The match is ongoing.")
 
