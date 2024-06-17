@@ -10,6 +10,8 @@ class MatchUpdateCmd(BaseCommand):
         self.tournament = tournament
         self.round = round
         self.match = match
+        self.data = data
 
     def execute(self):
+        self.tournament.update_match(self.match, **self.data)
         return Context("tournament-view", tournament=self.tournament)
