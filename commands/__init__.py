@@ -5,6 +5,7 @@ from .noop import NoopCmd
 from .update_player import PlayerUpdateCmd
 from .tour_list import TourListCmd
 from .create_tour import TournamentCreateCmd
+from .update_match import MatchUpdateCmd
 
 __all__ = [
     "ClubCreateCmd",
@@ -14,4 +15,5 @@ __all__ = [
     "PlayerUpdateCmd",
     "TourListCmd",
     "TournamentCreateCmd",
+    "MatchUpdateCmd",
 ]

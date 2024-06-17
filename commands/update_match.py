@@ -1,13 +1,15 @@
 from commands.context import Context
-from models import Match
 
 from .base import BaseCommand
+
 
 class MatchUpdateCmd(BaseCommand):
     """Command to handle matches"""
 
-    def __init__(self, players, completed, winner, **data):
-        self.players = players
-        self.completed = completed
-        self.winner = winner
-        self.data = data
+    def __init__(self, tournament, match, **data):
+        self.tournament = tournament
+        self.match = match
+
+
+    def execute(self):
+        return Context("match-view", tournament=self.tournament, match=self.match)
