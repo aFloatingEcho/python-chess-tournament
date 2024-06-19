@@ -112,6 +112,7 @@ class Tournament:
         return pairings
 
     def next_round(self):
+        """Command to begin the next round."""
         pairings = self.get_pairings()
         if (self.current_round < self.number_of_rounds):
             round = []
@@ -127,12 +128,14 @@ class Tournament:
         return self
 
     def add_player(self, player):
+        """Command to add a player. Note sanity check is done elsewhere."""
         if player not in self.players:
             self.players.append(player)
             self.save()
         return player
 
     def generate_report(self):
+        """Command to generate a report, using the name of the tournament on the report."""
         save_location = self.name + ".txt"
         with open(save_location, 'w') as file:
             file.write("Tournament Name: " + self.name + "\n")

@@ -4,7 +4,7 @@ from .base import BaseCommand
 
 
 class RoundUpdateCmd(BaseCommand):
-    """Command to handle matches"""
+    """Command to advance to the next round."""
 
     def __init__(self, tournament, **data):
         self.tournament = tournament

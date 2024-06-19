@@ -4,7 +4,7 @@ from .base import BaseCommand
 
 
 class GenerateReport(BaseCommand):
-    """Command to handle matches"""
+    """Command to generate a report."""
 
     def __init__(self, tournament):
         self.tournament = tournament

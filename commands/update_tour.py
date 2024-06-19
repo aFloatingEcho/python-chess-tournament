@@ -4,7 +4,7 @@ from .base import BaseCommand
 
 
 class EditTourCmd(BaseCommand):
-    """Command to handle matches"""
+    """Command to add players to a tournament."""
 
     def __init__(self, tournament, player, **data):
         self.tournament = tournament
